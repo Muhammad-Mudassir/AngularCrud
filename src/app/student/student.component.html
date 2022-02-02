@@ -1,0 +1,58 @@
+<div class="container">
+
+        <button class="btn btn-outline-dark px-5" type="submit" data-toggle="modal" data-target="#addModal">Add Student</button>
+
+<table class="table table-dark text-center mt-3">
+  <thead>
+  <tr>
+    <th scope="col">No</th>
+    <th scope="col">Name</th>
+    <th scope="col">Roll No</th>
+    <th scope="col">Grade</th>
+    <th scope="col">Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let student of studentList">
+    <th>{{student.id}}</th>
+    <th>{{student.name}}</th>
+    <th>{{student.rollNum}}</th>
+    <th>{{student.grade}}</th>
+    <td>
+      <button type="button" class="btn btn-outline-warning btn-sm me-2" (click)="editStudent(student)" data-toggle="modal" data-target="#addModal">Edit</button>
+      <button type="button" class="btn btn-outline-danger btn-sm" (click)="deleteStudent(student.id)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</div>
+
+
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h3 class="modal-title text-center pb-3">Add New Student</h3>
+        <form [formGroup]="studentValue">
+          <div class="form-group mb-4">
+            <input type="text" formControlName="name" class="form-control" placeholder="Enter Name" required>
+          </div>
+          <div class="form-group mb-4">
+            <input type="number" formControlName="rollNum" class="form-control" placeholder="Enter Roll-No" required>
+          </div>
+          <div class="form-group mb-4">
+            <input type="text" formControlName="grade" class="form-control" placeholder="Enter Grade" required>
+          </div>
+          <button *ngIf="btnSaveShow" class="btn btn-dark btn-block" (click)="Addstudent()">Submit</button>
+          <button *ngIf="btnUpdateShow" class="btn btn-dark btn-block" (click)="updateStudent()">Update</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
